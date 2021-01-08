@@ -19,10 +19,11 @@ slides.forEach(setSlidePosition);
 
 
 //onclick right, move slides right
-nextButton.getElementById("carousel__slide").addEventListener('click', e => {
+nextButton.addEventListener('click', e => {
     const currentSlide = track.querySelector('.current-slide');
+    //checking to see if it's implmenting on my class
     console.log(currentSlide);
-    //move the slide
+    //move to the next slide
 });
 
 //on indicator click, move to slide
