@@ -5,39 +5,39 @@ const carouselImages = document.querySelectorAll('.carousel__slide img');
 prevButton = document.querySelector('#prevBtn');
 nextButton = document.querySelector('#nextBtn');
 
-//Counter
-let counter = 1;
+//determining slide positioning
+let slidePosition = 1;
 const size = carouselImages[0].clientWidth;
 
 //Image slide functionality
-carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+carouselSlide.style.transform = 'translateX(' + (-size * slidePosition) + 'px)';
 
 //Button Listeners
 nextBtn.addEventListener('click', () => {
-    if (counter >= carouselImages.length - 1) return;
+    if (slidePosition >= carouselImages.length - 1) return;
     carouselSlide.style.transition = "transform 0.4s ease-in-out";
-    counter++;
-    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    slidePosition++;
+    carouselSlide.style.transform = 'translateX(' + (-size * slidePosition) + 'px)';
 });
 
 prevBtn.addEventListener('click', () => {
-    if (counter <= 0) return;
+    if (slidePosition <= 0) return;
     carouselSlide.style.transition = "transform 0.4s ease-in-out";
-    counter--;
-    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    slidePosition--;
+    carouselSlide.style.transform = 'translateX(' + (-size * slidePosition) + 'px)';
 });
 
 //adding carousel functionality
 carouselSlide.addEventListener('transitionend', () => {
-    if (carouselImages[counter].id === 'lastClone') {
+    if (carouselImages[slidePosition].id === 'lastClone') {
         console.log('transition ended')
         carouselSlide.style.transition = 'none';
-        counter = carouselImages.length - 2;
-        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        slidePosition = carouselImages.length - 2;
+        carouselSlide.style.transform = 'translateX(' + (-size * slidePosition) + 'px)';
     }
-    if (carouselImages[counter].id === 'firstClone') {
+    if (carouselImages[slidePosition].id === 'firstClone') {
         carouselSlide.style.transition = 'none';
-        counter = carouselImages.length - counter;
-        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        slidePosition = carouselImages.length - slidePosition;
+        carouselSlide.style.transform = 'translateX(' + (-size * slidePosition) + 'px)';
     }
 });
