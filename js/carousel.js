@@ -1,29 +1,43 @@
-const track = document.querySelector('.carousel__track');
-const slides = Array.from(track.children);
-const nextButton = document.querySelector('carousel__button--right');
-const prevButton = document.querySelector('carousel__button--left');
-const dotsNav = document.querySelector('.carousel__nav');
-const dots = Array.from(dotsNav.children);
+const carouselSlide = document.querySelector('.carousel__slide');
+const carouselImages = document.querySelectorAll('.carousel__slide img');
 
-const slideWidth = slides[0].getBoundingClientRect().width;
-//console.log(slideWidth)
+//Buttons
+prevButton = document.querySelector('#prevBtn');
+nextButton = document.querySelector('#nextBtn');
 
-//arrange slides next to one another
-const setSlidePosition = (slides, index) => {
-    slides.style.left = slideWidth * index + 'px';
-};
+//Counter
+let counter = 1;
+const size = carouselImages[0].clientWidth;
 
-slides.forEach(setSlidePosition);
+//Image slide functionality
+carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 
-//onclick left, move slides left
-
-
-//onclick right, move slides right
-nextButton.addEventListener('click', e => {
-    const currentSlide = track.querySelector('.current-slide');
-    //checking to see if it's implmenting on my class
-    console.log(currentSlide);
-    //move to the next slide
+//Button Listeners
+nextBtn.addEventListener('click', () => {
+    if (counter >= carouselImages.length - 1) return;
+    carouselSlide.style.transition = "transform 0.4s ease-in-out";
+    counter++;
+    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 });
 
-//on indicator click, move to slide
+prevBtn.addEventListener('click', () => {
+    if (counter <= 0) return;
+    carouselSlide.style.transition = "transform 0.4s ease-in-out";
+    counter--;
+    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+});
+
+//adding carousel functionality
+carouselSlide.addEventListener('transitionend', () => {
+    if (carouselImages[counter].id === 'lastClone') {
+        console.log('transition ended')
+        carouselSlide.style.transition = 'none';
+        counter = carouselImages.length - 2;
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    }
+    if (carouselImages[counter].id === 'firstClone') {
+        carouselSlide.style.transition = 'none';
+        counter = carouselImages.length - counter;
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    }
+});

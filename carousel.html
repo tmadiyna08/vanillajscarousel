@@ -3,39 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanilla JS Carousel</title>
+    <script src="https://kit.fontawesome.com/621d1dd858.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
+    <title>Vanilla JS  Carousel</title>
 </head>
 <body>
-    <div class="carousel">
-        <button class="carousel__button carousel__button--left">
-            <img src = "img/left-arrow.svg" alt="">
-        </button>
-
-        <div class="carousel__track-container">
-            <ul class="carousel__track">
-                <li class="carousel__slide current-slide">
-                    <img class ="carousel__image" src ="img/Slide1_1.png" alt="">
-                </li>
-                <li class="carousel__slide">
-                    <img class ="carousel__image" src ="img/Slide2_2.png" alt="">
-                </li>
-                <li class="carousel__slide">
-                    <img class ="carousel__image" src ="img/Slide3_3.png" alt="">
-                </li>
-            </ul>
+    <div class="carousel__container">
+        <i class="fas fa-arrow-left" id="prevBtn"></i>
+        <i class="fas fa-arrow-right" id="nextBtn"></i>
+        <div class="carousel__slide">
+          <img src="https://i.imgur.com/Goyunay.png" id="lastClone" alt="">
+          <img src="https://i.imgur.com/uDvsHqz.png" alt="">
+          <img src="https://i.imgur.com/aLSkIdk.png" alt="">
+          <img src="https://i.imgur.com/Goyunay.png" alt="">
+          <img src="https://i.imgur.com/uDvsHqz.png" id="firstClone" alt="">
         </div>
-
-        <button class="carousel__button carousel__button--right">
-            <img src = "img/right-arrow.svg" alt="">
-        </button>
-
-        <div class="carousel__nav">
-            <button class="carousel__indicator current-slide"></button>
-            <button class="carousel__indicator"></button>
-            <button class="carousel__indicator"></button>
-        </div>
-    </div>
-    <script src="js/carousel.js" charset="utf-8"></script>
+      </div>
+      <script src="js/carousel.js"></script>
 </body>
 </html>
